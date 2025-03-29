@@ -314,7 +314,7 @@ fn main() {
             let dst = target_dir.join(filename);
             debug_log!("HARD LINK {} TO {}", asset.display(), dst.display());
             if !dst.exists() {
-                std::fs::hard_link(asset.clone(), dst).unwrap();
+                std::fs::hard_link(asset.clone(), dst).unwrap_or_default();
             }
 
             // Copy DLLs to examples as well
@@ -322,7 +322,7 @@ fn main() {
                 let dst = target_dir.join("examples").join(filename);
                 debug_log!("HARD LINK {} TO {}", asset.display(), dst.display());
                 if !dst.exists() {
-                    std::fs::hard_link(asset.clone(), dst).unwrap();
+                    std::fs::hard_link(asset.clone(), dst).unwrap_or_default();
                 }
             }
 
@@ -330,7 +330,7 @@ fn main() {
             let dst = target_dir.join("deps").join(filename);
             debug_log!("HARD LINK {} TO {}", asset.display(), dst.display());
             if !dst.exists() {
-                std::fs::hard_link(asset.clone(), dst).unwrap();
+                std::fs::hard_link(asset.clone(), dst).unwrap_or_default();
             }
         }
     }
